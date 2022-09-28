@@ -37,7 +37,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Arquivo");
 
-        jMnCadUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
+        jMnCadUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMnCadUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/usario.png"))); // NOI18N
         jMnCadUsuario.setText("Cadastro de Usuário");
         jMnCadUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -47,7 +47,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMnCadUsuario);
 
-        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/usario.png"))); // NOI18N
+        jMenuItem1.setText("Cadastro de Clientes");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -66,11 +68,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 375, Short.MAX_VALUE)
+            .addGap(0, 429, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 231, Short.MAX_VALUE)
+            .addGap(0, 280, Short.MAX_VALUE)
         );
 
         pack();

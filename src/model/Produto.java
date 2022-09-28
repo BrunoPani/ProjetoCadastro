@@ -1,21 +1,21 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
 
 /**
  *
- * @author Geral
+ * @author clebe
  */
 public class Produto {
+    //Atributos
     private int id;
     private String descricao;
     private double preco;
     private int qtd_estoque;
     
-    private Fornecedor Fornecedor;
+    private Fornecedor fornecedor;
 
     public int getId() {
         return id;
@@ -50,12 +50,10 @@ public class Produto {
     }
 
     public Fornecedor getFornecedor() {
-        return Fornecedor;
+        return fornecedor;
     }
 
-    public void setFornecedor(Fornecedor Fornecedor) {
-        this.Fornecedor = Fornecedor;
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
-    
-    
 }

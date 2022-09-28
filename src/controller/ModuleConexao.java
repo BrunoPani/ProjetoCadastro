@@ -12,15 +12,15 @@ import java.sql.*;
  */
 public class ModuleConexao {
 
-    //criando um método responsável por estabelecer uma conexão com o banco
+    //criando um método ressponável por estabelecer uma conexão com o banco
     public static Connection conectar() {
         Connection conexao = null;
-        //criando o driver correspondente ao banco
+        //criando o driver  orrespondente ao banco
         String driver = "com.mysql.cj.jdbc.Driver";
         //armazenando informações referente ao banco de dados
-        String url = "jdbc:mysql://localhost:3306/cadastrousuario?useTimezone=true&serverTimezone=UTC";
+        String url = "jdbc:mysql://localhost:3306/cadastrouusario?useTimezone=true&serverTimezone=UTC";
         String user = "root";
-        String senha = "root";
+        String senha = "IFROOcrxi18#";
         //estabelecer a conexão com o banco
         try {
             Class.forName(driver);

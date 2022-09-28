@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package controller;
 
 import java.sql.Connection;
@@ -9,27 +13,29 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.Cliente;
 
-
 /**
  *
- * @author teclab
+ * @author clebe
  */
 public class ClienteDAO {
     private Connection con;
-    
-    public ClienteDAO (Connection con){
-        this.con = new ModuleConexao().conectar();
+
+    public ClienteDAO(Connection con) {
+        this.con = ModuleConexao.conectar();
     }
 
     public ClienteDAO() {
+        
     }
 
-    //Metodo cadastrarCliente
+    
+    
+    //Metodo cpadastrarCliente
     public void cadastrarCliente(Cliente obj) {
         try {
 
-            //1 passo - criar o comando sql
-            String sql = "insert into clientes (nome,rg,cpf,email,telefone,celular,cep,endereco,numero,complemento,bairro,cidade,estado) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            //1 passo  - criar o comando sql
+            String sql = "insert into clientes (nome,rg,cpf,email,telefone,celular,cep,endereco,numero,complemento,bairro,cidade,estado)  values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
             //2 passo - conectar o banco de dados e organizar o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -59,13 +65,13 @@ public class ClienteDAO {
         }
 
     }
-
-    //Metodo AlterarCliente
+    
+     //Metodo AlterarCliente
     public void alterarCliente(Cliente obj) {
         try {
 
-            //1 passo - criar o comando sql
-            String sql = "update clientes set nome=?, rg=?, cpf=?, email=?, telefone=?, celular=?, cep=?, endereco=?, numero=?,complemento=?,bairro=?,cidade=?, estado=? where id =?";
+            //1 passo  - criar o comando sql
+            String sql = "update clientes set  nome=?, rg=?, cpf=?, email=?, telefone=?, celular=?, cep=?, endereco=?, numero=?,complemento=?,bairro=?,cidade=?, estado=?  where id =?";
 
             //2 passo - conectar o banco de dados e organizar o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -96,12 +102,12 @@ public class ClienteDAO {
 
         }
     }
-
+    
     //Metodo ExcluirCliente
     public void excluirCliente(Cliente obj) {
         try {
 
-            //1 passo - criar o comando sql
+            //1 passo  - criar o comando sql
             String sql = "delete from clientes where id = ?";
 
             //2 passo - conectar o banco de dados e organizar o comando sql
@@ -132,7 +138,7 @@ public class ClienteDAO {
             String sql = "select * from clientes";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
                 Cliente obj = new Cliente();
 
@@ -163,8 +169,8 @@ public class ClienteDAO {
         }
 
     }
-
-    //metodo consultaCliente por Nome
+    
+   //metodo consultaCliente por Nome
     public Cliente consultaPorNome(String nome) {
         try {
             //1 passo - criar o sql , organizar e executar.
@@ -199,12 +205,12 @@ public class ClienteDAO {
             JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
             return null;
         }
-    }
+    } 
     
-    //metodo busca Cliente por Cpf
-    public Cliente buscaPorCpf(String cpf) {
+  //metodo busca Cliente  por Cpf
+    public Cliente buscaporcpf(String cpf) {
         try {
-        //1 passo - criar o sql , organizar e executar.
+            //1 passo - criar o sql , organizar e executar.
             String sql = "select * from clientes where cpf = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, cpf);
@@ -236,8 +242,8 @@ public class ClienteDAO {
             JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
             return null;
         }
-    }
-
+    } 
+    
     //Metodo buscarclientePorNome - retorna uma lista
     public List<Cliente> buscaClientePorNome(String nome) {
         try {
@@ -281,4 +287,5 @@ public class ClienteDAO {
             return null;
         }
     }
+    
 }
