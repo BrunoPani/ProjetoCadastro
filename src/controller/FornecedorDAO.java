@@ -19,6 +19,7 @@ import model.Fornecedor;
  */
 public class FornecedorDAO {
     private Connection con;
+    ResultSet rs;
 
     public FornecedorDAO(Connection con) {
         this.con = ModuleConexao.conectar();
@@ -71,7 +72,7 @@ public class FornecedorDAO {
         try {
 
             //1 passo  - criar o comando sql
-            String sql = "update fornecedores set  nome=?, rg=?, cnpj=?, email=?, telefone=?, celular=?, cep=?, endereco=?, numero=?,complemento=?,bairro=?,cidade=?, estado=?  where id =?";
+            String sql = "update fornecedores set nome=?, rg=?, cnpj=?, email=?, telefone=?, celular=?, cep=?, endereco=?, numero=?,complemento=?,bairro=?,cidade=?, estado=?  where id =?";
 
             //2 passo - conectar o banco de dados e organizar o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -129,22 +130,19 @@ public class FornecedorDAO {
     
     //Metodo Listar Todos Fornecedores
     public List<Fornecedor> listarFornecedores() {
+        List<Fornecedor> lista = new ArrayList<>();
+        Fornecedor obj = new Fornecedor();
         try {
 
-            //1 passo criar a lista
-            List<Fornecedor> lista = new ArrayList<>();
-
-            //2 passo - criar o sql , organizar e executar.
+            con = ModuleConexao.conectar();
             String sql = "select * from fornecedores";
             PreparedStatement stmt = con.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Fornecedor obj = new Fornecedor();
 
-                obj.setId(rs.getInt("id"));
+                //obj.setId(rs.getInt("id"));
                 obj.setNome(rs.getString("nome"));
-                obj.setRg(rs.getString("rg"));
                 obj.setCnpj(rs.getString("cnpj"));
                 obj.setEmail(rs.getString("email"));
                 obj.setTelefone(rs.getString("telefone"));

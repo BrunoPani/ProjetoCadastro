@@ -18,9 +18,9 @@ public class ModuleConexao {
         //criando o driver  orrespondente ao banco
         String driver = "com.mysql.cj.jdbc.Driver";
         //armazenando informações referente ao banco de dados
-        String url = "jdbc:mysql://localhost:3306/cadastrouusario?useTimezone=true&serverTimezone=UTC";
+        String url = "jdbc:mysql://localhost:3306/cadastrousuario?useTimezone=true&serverTimezone=UTC";
         String user = "root";
-        String senha = "IFROOcrxi18#";
+        String senha = "";
         //estabelecer a conexão com o banco
         try {
             Class.forName(driver);
