@@ -14,6 +14,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import model.Usuario;
+import util.Senha;
 
 /**
  *
@@ -92,7 +93,12 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             jCbxPerfil.setSelectedItem(null);
         }
     }
-
+    
+    public void usarSenha(){
+        Senha senha = new Senha();
+        jTxtSenha.setText(senha.getSenha());
+    }
+       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -116,6 +122,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         jBtnCadastrar = new javax.swing.JButton();
         jBtnEditar = new javax.swing.JButton();
         jBtnExcluir = new javax.swing.JButton();
+        jBntGerarSenha = new javax.swing.JButton();
         Consulta = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableUsuario = new javax.swing.JTable();
@@ -168,6 +175,13 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             }
         });
 
+        jBntGerarSenha.setText("Gerar uma senha aleatória");
+        jBntGerarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBntGerarSenhaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -201,7 +215,9 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBntGerarSenha)
+                            .addComponent(jTxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(388, 388, 388))))
         );
 
@@ -218,11 +234,13 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTxtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBntGerarSenha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCbxPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -231,7 +249,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     .addComponent(jBtnEditar)
                     .addComponent(jBtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnExcluir))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtnCadastrar, jBtnEditar, jBtnExcluir});
@@ -250,7 +268,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             .addGroup(DadosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         JPanielDadosUsuario.addTab("Dados Usuários", Dados);
@@ -336,7 +354,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(JPanielDadosUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -419,6 +437,12 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         listar();
     }//GEN-LAST:event_jBtnEditarActionPerformed
 
+    private void jBntGerarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntGerarSenhaActionPerformed
+        TelaGerenciarSenha tela = new TelaGerenciarSenha();
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_jBntGerarSenhaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -462,6 +486,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel Consulta;
     private javax.swing.JPanel Dados;
     private javax.swing.JTabbedPane JPanielDadosUsuario;
+    private javax.swing.JButton jBntGerarSenha;
     private javax.swing.JButton jBtnBusca;
     private javax.swing.JButton jBtnCadastrar;
     private javax.swing.JButton jBtnEditar;
@@ -478,6 +503,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField jTxtFiltroCliente;
     private javax.swing.JTextField jTxtLogin;
     private javax.swing.JTextField jTxtNome;
-    private javax.swing.JTextField jTxtSenha;
+    public static javax.swing.JTextField jTxtSenha;
     // End of variables declaration//GEN-END:variables
 }

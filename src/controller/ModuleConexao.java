@@ -20,7 +20,7 @@ public class ModuleConexao {
         //armazenando informações referente ao banco de dados
         String url = "jdbc:mysql://localhost:3306/cadastrousuario?useTimezone=true&serverTimezone=UTC";
         String user = "root";
-        String senha = "";
+        String senha = "root";
         //estabelecer a conexão com o banco
         try {
             Class.forName(driver);
