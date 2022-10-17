@@ -34,25 +34,25 @@ public class FornecedorDAO {
     //Metodo cadastrarFornecedor
     public void cadastrarFornecedor(Fornecedor obj) {
         try {
+            con = ModuleConexao.conectar();
 
             //1 passo  - criar o comando sql
-            String sql = "insert into fornecedores (nome,rg,cnpj,email,telefone,celular,cep,endereco,numero,complemento,bairro,cidade,estado)  values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into fornecedores (nome,cnpj,email,telefone,celular,cep,endereco,numero,complemento,bairro,cidade,estado)  values (?,?,?,?,?,?,?,?,?,?,?,?)";
 
             //2 passo - conectar o banco de dados e organizar o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, obj.getNome());
-            stmt.setString(2, obj.getRg());
-            stmt.setString(3, obj.getCnpj());
-            stmt.setString(4, obj.getEmail());
-            stmt.setString(5, obj.getTelefone());
-            stmt.setString(6, obj.getCelular());
-            stmt.setString(7, obj.getCep());
-            stmt.setString(8, obj.getEndereco());
-            stmt.setInt(9, obj.getNumero());
-            stmt.setString(10, obj.getComplemento());
-            stmt.setString(11, obj.getBairro());
-            stmt.setString(12, obj.getCidade());
-            stmt.setString(13, obj.getUf());
+            stmt.setString(2, obj.getCnpj());
+            stmt.setString(3, obj.getEmail());
+            stmt.setString(4, obj.getTelefone());
+            stmt.setString(5, obj.getCelular());
+            stmt.setString(6, obj.getCep());
+            stmt.setString(7, obj.getEndereco());
+            stmt.setInt(8, obj.getNumero());
+            stmt.setString(9, obj.getComplemento());
+            stmt.setString(10, obj.getBairro());
+            stmt.setString(11, obj.getCidade());
+            stmt.setString(12, obj.getUf());
 
             //3 passo - executar o comando sql
             stmt.execute();
@@ -70,25 +70,25 @@ public class FornecedorDAO {
      //Metodo AlterarFornecedor
     public void alterarFornecedor(Fornecedor obj) {
         try {
+            con = ModuleConexao.conectar();
 
             //1 passo  - criar o comando sql
-            String sql = "update fornecedores set nome=?, rg=?, cnpj=?, email=?, telefone=?, celular=?, cep=?, endereco=?, numero=?,complemento=?,bairro=?,cidade=?, estado=?  where id =?";
+            String sql = "update fornecedores set  nome=?, cnpj=?, email=?, telefone=?, celular=?, cep=?, endereco=?, numero=?,complemento=?,bairro=?,cidade=?, estado=?  where id =?";
 
             //2 passo - conectar o banco de dados e organizar o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, obj.getNome());
-            stmt.setString(2, obj.getRg());
-            stmt.setString(3, obj.getCnpj());
-            stmt.setString(4, obj.getEmail());
-            stmt.setString(5, obj.getTelefone());
-            stmt.setString(6, obj.getCelular());
-            stmt.setString(7, obj.getCep());
-            stmt.setString(8, obj.getEndereco());
-            stmt.setInt(9, obj.getNumero());
-            stmt.setString(10, obj.getComplemento());
-            stmt.setString(11, obj.getBairro());
-            stmt.setString(12, obj.getCidade());
-            stmt.setString(13, obj.getUf());
+            stmt.setString(2, obj.getCnpj());
+            stmt.setString(3, obj.getEmail());
+            stmt.setString(4, obj.getTelefone());
+            stmt.setString(5, obj.getCelular());
+            stmt.setString(6, obj.getCep());
+            stmt.setString(7, obj.getEndereco());
+            stmt.setInt(8, obj.getNumero());
+            stmt.setString(9, obj.getComplemento());
+            stmt.setString(10, obj.getBairro());
+            stmt.setString(11, obj.getCidade());
+            stmt.setString(12, obj.getUf());
 
             stmt.setInt(14, obj.getId());
 
@@ -107,6 +107,7 @@ public class FornecedorDAO {
     //Metodo ExcluirFornecedor
     public void excluirFornecedor(Fornecedor obj) {
         try {
+            con = ModuleConexao.conectar();
 
             //1 passo  - criar o comando sql
             String sql = "delete from fornecedores where id = ?";
@@ -130,18 +131,21 @@ public class FornecedorDAO {
     
     //Metodo Listar Todos Fornecedores
     public List<Fornecedor> listarFornecedores() {
-        List<Fornecedor> lista = new ArrayList<>();
-        Fornecedor obj = new Fornecedor();
         try {
-
             con = ModuleConexao.conectar();
+
+            //1 passo criar a lista
+            List<Fornecedor> lista = new ArrayList<>();
+
+            //2 passo - criar o sql , organizar e executar.
             String sql = "select * from fornecedores";
             PreparedStatement stmt = con.prepareStatement(sql);
-            rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
+                Fornecedor obj = new Fornecedor();
 
-                //obj.setId(rs.getInt("id"));
+                obj.setId(rs.getInt("id"));
                 obj.setNome(rs.getString("nome"));
                 obj.setCnpj(rs.getString("cnpj"));
                 obj.setEmail(rs.getString("email"));
@@ -171,6 +175,7 @@ public class FornecedorDAO {
    //metodo consultaFornecedor por Nome
     public Fornecedor consultaPorNome(String nome) {
         try {
+            con = ModuleConexao.conectar();
             //1 passo - criar o sql , organizar e executar.
             String sql = "select * from fornecedores where nome = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -183,7 +188,6 @@ public class FornecedorDAO {
 
                 obj.setId(rs.getInt("id"));
                 obj.setNome(rs.getString("nome"));
-                obj.setRg(rs.getString("rg"));
                 obj.setCnpj(rs.getString("cnpj"));
                 obj.setEmail(rs.getString("email"));
                 obj.setTelefone(rs.getString("telefone"));
@@ -208,6 +212,7 @@ public class FornecedorDAO {
   //metodo busca Fornecedor  por Cnpj
     public Fornecedor buscaporCnpj(String cnpj) {
         try {
+            con = ModuleConexao.conectar();
             //1 passo - criar o sql , organizar e executar.
             String sql = "select * from fornecedores where cnpj = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -220,7 +225,6 @@ public class FornecedorDAO {
 
                 obj.setId(rs.getInt("id"));
                 obj.setNome(rs.getString("nome"));
-                obj.setRg(rs.getString("rg"));
                 obj.setCnpj(rs.getString("cnpj"));
                 obj.setEmail(rs.getString("email"));
                 obj.setTelefone(rs.getString("telefone"));
@@ -245,6 +249,7 @@ public class FornecedorDAO {
     //Metodo buscarfornecedorPorNome - retorna uma lista
     public List<Fornecedor> buscaFornecedorPorNome(String nome) {
         try {
+            con = ModuleConexao.conectar();
 
             //1 passo criar a lista
             List<Fornecedor> lista = new ArrayList<>();
@@ -261,7 +266,6 @@ public class FornecedorDAO {
 
                 obj.setId(rs.getInt("id"));
                 obj.setNome(rs.getString("nome"));
-                obj.setRg(rs.getString("rg"));
                 obj.setCpf(rs.getString("cpf"));
                 obj.setEmail(rs.getString("email"));
                 obj.setTelefone(rs.getString("telefone"));

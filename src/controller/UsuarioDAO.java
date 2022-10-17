@@ -65,7 +65,7 @@ public class UsuarioDAO {
                 listaUsuarios.add(usuario);
 
             }
-            conexao = ModuleConexao.desconectar();
+//            conexao = ModuleConexao.desconectar();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -94,7 +94,7 @@ public class UsuarioDAO {
                 listaUsuarios.add(usuario);
 
             }
-            conexao = ModuleConexao.desconectar();
+//            conexao = ModuleConexao.desconectar();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }

@@ -19,7 +19,9 @@ import model.Cliente;
  */
 public class ClienteDAO {
     private Connection con;
-
+    PreparedStatement stm;
+    ResultSet rs;
+    
     public ClienteDAO(Connection con) {
         this.con = ModuleConexao.conectar();
     }
@@ -33,9 +35,10 @@ public class ClienteDAO {
     //Metodo cpadastrarCliente
     public void cadastrarCliente(Cliente obj) {
         try {
+            con = ModuleConexao.conectar();
 
             //1 passo  - criar o comando sql
-            String sql = "insert into clientes (nome,rg,cpf,email,telefone,celular,cep,endereco,numero,complemento,bairro,cidade,estado)  values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into cliente (nome,rg,cpf,email,telefone,celular,cep,endereco,numero,complemento,bairro,cidade,estado)  values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
             //2 passo - conectar o banco de dados e organizar o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -69,9 +72,9 @@ public class ClienteDAO {
      //Metodo AlterarCliente
     public void alterarCliente(Cliente obj) {
         try {
-
+            con = ModuleConexao.conectar();
             //1 passo  - criar o comando sql
-            String sql = "update clientes set  nome=?, rg=?, cpf=?, email=?, telefone=?, celular=?, cep=?, endereco=?, numero=?,complemento=?,bairro=?,cidade=?, estado=?  where id =?";
+            String sql = "update cliente set  nome=?, rg=?, cpf=?, email=?, telefone=?, celular=?, cep=?, endereco=?, numero=?,complemento=?,bairro=?,cidade=?, estado=?  where id =?";
 
             //2 passo - conectar o banco de dados e organizar o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -106,9 +109,9 @@ public class ClienteDAO {
     //Metodo ExcluirCliente
     public void excluirCliente(Cliente obj) {
         try {
-
+            con = ModuleConexao.conectar();
             //1 passo  - criar o comando sql
-            String sql = "delete from clientes where id = ?";
+            String sql = "delete from cliente where id = ?";
 
             //2 passo - conectar o banco de dados e organizar o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -130,12 +133,12 @@ public class ClienteDAO {
     //Metodo Listar Todos Clientes
     public List<Cliente> listarClientes() {
         try {
-
+            con = ModuleConexao.conectar();
             //1 passo criar a lista
             List<Cliente> lista = new ArrayList<>();
 
             //2 passo - criar o sql , organizar e executar.
-            String sql = "select * from clientes";
+            String sql = "select * from cliente";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
 
@@ -173,8 +176,9 @@ public class ClienteDAO {
    //metodo consultaCliente por Nome
     public Cliente consultaPorNome(String nome) {
         try {
+            con = ModuleConexao.conectar();
             //1 passo - criar o sql , organizar e executar.
-            String sql = "select * from clientes where nome = ?";
+            String sql = "select * from cliente where nome = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, nome);
 
@@ -210,8 +214,9 @@ public class ClienteDAO {
   //metodo busca Cliente  por Cpf
     public Cliente buscaporcpf(String cpf) {
         try {
+            con = ModuleConexao.conectar();
             //1 passo - criar o sql , organizar e executar.
-            String sql = "select * from clientes where cpf = ?";
+            String sql = "select * from cliente where cpf = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, cpf);
 
@@ -247,12 +252,12 @@ public class ClienteDAO {
     //Metodo buscarclientePorNome - retorna uma lista
     public List<Cliente> buscaClientePorNome(String nome) {
         try {
-
+            con = ModuleConexao.conectar();
             //1 passo criar a lista
             List<Cliente> lista = new ArrayList<>();
 
             //2 passo - criar o sql , organizar e executar.
-            String sql = "select * from clientes where nome like ?";
+            String sql = "select * from cliente where nome like ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, nome);
 
